@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hjc.dao.GoodsDao">
+    <!--  type model path  -->
+    <resultMap type="com.hjc.model.Goods" id="goodsResultMap" >
+        <id property="gooId" column="gid"/>
+        <result property="gooName" column="gname"/>
+        <result property="goomaxNum" column="gmaxnum"/>
+        <result property="goominNum" column="gminnum"/>
+        <result property="gooCount" column="gcount"/>
+        <result property="gooInfo" column="ginfo"/>
+        <result property="gooAuthor" column="gauthor"/>
+        <result property="gooGroup" column="ggroup"/>
+    </resultMap>
+    <select id="queryPageIndex" resultMap="goodsResultMap">
+        SELECT gid ,gname ,gmaxnum ,gminnum ,gcount ,ginfo ,gauthor ,ggroup
+        FROM goods
+        limit #{initIndex},#{count}
+    </select>
+</mapper>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hjc.dao.InfoDao">
+    <!--  type model path  -->
+    <resultMap type="com.hjc.model.Init_info" id="infoResultMap" >
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="uid" column="uid"/>
+        <result property="pid" column="pid"/>
+        <result property="sid" column="sid"/>
+        <result property="password" column="password"/>
+        <result property="area" column="area"/>
+    </resultMap>
+    <insert id="addInfo" parameterType="com.hjc.model.Init_info">
+        INSERT INTO init_info VALUE (#{id},#{name}, #{uid},#{pid},#{sid},#{password} #{area})
+    </insert>
+
+    <delete id="deleteInfo" parameterType="int">
+        DELETE FROM init_info WHERE id=#{id}
+    </delete>
+
+    <update id="updateInfo" parameterType="com.hjc.model.Init_info">
+        UPDATE init_info
+        SET NAME = #{m_name},UID = #{m_uid},PID = #{m_pid},SID = #{m_sid},AREA = #{m_area}
+        WHERE  id = #{id}
+    </update>
+
+    <select id="queryInfo" resultType="com.hjc.model.Init_info">
+        SELECT id,name,uid,pid,sid,password,area
+        FROM init_info
+        WHERE id=#{ids} and password=#{passwords}
+    </select>
+    <select id="queryAllInfo" resultMap="infoResultMap">
+        SELECT *
+        FROM init_info
+    </select>
+</mapper>
